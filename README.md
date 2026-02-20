@@ -1,39 +1,49 @@
-MIT-Daily 🛒
+MIT-DailyNeeds 🛒
+
 Smart Student Marketplace with AI Recommendations
 
-MIT-Daily is a full-stack MERN marketplace platform designed primarily for students.
-It allows users to explore products based on category, region, and personalized recommendations.
+🔗 Live Demo
 
-The platform intelligently suggests products tailored for:
+Frontend (Vercel):
+https://mit-daily-needs.vercel.app
 
-🇮🇳 Indian Students → Cookers, pans, kettles, basic kitchen bundles, etc.
+Backend (Render):
+https://mit-dailyneeds.onrender.com
 
-🌍 Foreign Students → Study desks, electronics bundles, starter kits, etc.
+📌 Overview
 
-The system also includes an AI Assistant, product filtering, region-based suggestions, and a feedback system.
+MIT-DailyNeeds is a full-stack MERN marketplace platform designed primarily for students.
 
-🚀 Live Demo
+The platform allows users to:
 
-🔗 Frontend (Deployed): https://mit-daily.vercel.app
+Browse categorized products
 
-🔗 Backend API (Deployed): https://mit-daily-api.onrender.com
+Get personalized recommendations
 
-📂 GitHub Repository: https://github.com/dummyuser/mit-daily
+Add products to cart
 
-(Dummy links — replace with actual links later)
+Submit feedback
+
+Use an AI assistant for product guidance
+
+The system uses a hybrid architecture:
+
+MongoDB + Express for core marketplace logic
+
+Firebase Realtime Database for feedback storage
+
+AI integration for smart responses
 
 🏗️ Tech Stack
 Frontend
 
-React.js
+React (Vite)
 
 React Router DOM
 
 Axios
 
-CSS (Custom Styling)
-
-Context-based Routing Layout
+CSS
 
 Backend
 
@@ -41,240 +51,187 @@ Node.js
 
 Express.js
 
-MongoDB
-
-Mongoose
+MongoDB (Mongoose)
 
 JWT Authentication
 
-bcrypt (Password Hashing)
-
 CORS
 
-dotenv
+Database
 
-Google Generative AI (AI Assistant)
+MongoDB (Products, Users, Cart)
 
-📌 Core Features
-🏠 Homepage
+Firebase Realtime Database (Feedback)
 
-Hero section with bundle offers
+Deployment
 
-Search functionality
+Frontend → Vercel
 
-Region & Category filter
+Backend → Render
 
-AI Assistant floating button
+Database → MongoDB Atlas
 
-Navigation (Home, Feedback, Category, Logout)
+Feedback → Firebase
 
-🗂 Category Page
-
-Browse products by category
-
-Filter by:
-
-Region
-
-Price
-
-Sort options
-
-Modal popup for product details
-
-Add to Cart functionality
-
-🎯 Personalized Recommendations
-
-Recommended products based on:
-
-Student region (India / Foreign)
-
-Product usage patterns
-
-Displays “Recommended” badge on cards
-
-🤖 AI Assistant
-
-Integrated using Google Generative AI
-
-Helps users:
-
-Find relevant products
-
-Suggest bundles
-
-Answer marketplace-related queries
-
-📝 Feedback System
-
-Star Rating (1–5)
-
-User Name
-
-Comments
-
-Stores feedback in MongoDB
-
-View user feedbacks section
-
+🚀 Features
 🔐 Authentication
 
-Login
+User Registration
 
-Register
+Login with JWT
 
-JWT-based secure authentication
+Protected Cart operations
 
-Password hashing using bcrypt
+🛍 Marketplace
+
+Product listing with filters
+
+Region-based filtering
+
+Price sorting
+
+Personalized recommendations
+
+Pagination
+
+🛒 Cart System
+
+Add to cart
+
+Remove from cart
+
+Token-based authorization
+
+💬 AI Assistant
+
+Context-aware AI responses
+
+Product & recommendation awareness
+
+⭐ Feedback System
+
+Firebase-based real-time feedback submission
+
+Ratings (1–5 stars)
+
+Public feedback display
 
 📂 Project Structure
-🔹 Backend Structure
-backend/
+MIT-DailyNeeds/
 │
-├── config/
-│   └── db.js
+├── Backend/
+│   ├── controllers/
+│   ├── routes/
+│   ├── models/
+│   ├── middleware/
+│   └── server.js
 │
-├── controllers/
-│   ├── chatController.js
-│   ├── marketplaceController.js
-│   ├── orderController.js
-│   ├── productController.js
-│   └── userController.js
+├── Frontend/
+│   ├── src/
+│   │   ├── Authpage/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   ├── utils/
+│   │   └── App.jsx
+│   └── vite.config.js
 │
-├── models/
-│   ├── ChatHistory.js
-│   └── productModel.js
-│
-├── routes/
-│   ├── chatRoutes.js
-│   └── marketplaceRoutes.js
-│
-├── .env
-├── package.json
-└── server.js
-Backend Responsibilities
-
-MongoDB connection
-
-API endpoints
-
-Authentication
-
-AI assistant integration
-
-Product filtering logic
-
-Feedback storage
-
-🔹 Frontend Structure
-frontend/
-│
-├── src/
-│   ├── Authpage/
-│   │   ├── Login.jsx
-│   │   └── Register.jsx
-│   │
-│   ├── components/
-│   │   └── Chatbot.jsx
-│   │
-│   ├── pages/
-│   │   ├── Category/
-│   │   │   ├── Category.jsx
-│   │   │   ├── CategoryCard.jsx
-│   │   │   └── BundlesHome.jsx
-│   │   │
-│   │   ├── AddCart.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── Feedback.jsx
-│   │   ├── StudentDiscount.jsx
-│   │   ├── bundleOffer.jsx
-│   │   └── ProductDetails.jsx
-│   │
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── App.css
-Frontend Responsibilities
-
-Routing with BrowserRouter
-
-Layout handling (Navbar hide on login/register)
-
-Product display & filtering
-
-Feedback form UI
-
-AI assistant UI integration
-
-⚙️ Installation & Setup
-1️⃣ Clone Repository
-git clone https://github.com/dummyuser/mit-daily.git
-cd mit-daily
-2️⃣ Backend Setup
-cd backend
-npm install
-
-Create .env file:
-
+└── README.md
+⚙️ Environment Variables
+Backend (.env)
 PORT=5000
-MONGO_URI=your_mongodb_connection
+MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
-GOOGLE_API_KEY=your_google_ai_key
-
-Run backend:
-
+Frontend (.env)
+VITE_API_URL=https://mit-dailyneeds.onrender.com
+🧪 Running Locally
+1️⃣ Clone Repository
+git clone https://github.com/sakshimadne/MIT-DailyNeeds.git
+2️⃣ Run Backend
+cd Backend
+npm install
 npm start
-3️⃣ Frontend Setup
-cd frontend
+
+Runs on:
+
+http://localhost:5000
+3️⃣ Run Frontend
+cd Frontend
 npm install
 npm run dev
-🧠 Personalization Logic
 
-The system categorizes products based on:
+Runs on:
 
-Region (India / Asia / Global)
+http://localhost:5173
+🔐 API Endpoints
+Auth
 
-Category Type (Kitchen, Study, Fitness, Electronics)
+POST /api/register
 
-Bundle suggestions
+POST /api/login
 
-AI-based conversation assistance
+Marketplace
 
-Example:
+GET /api/marketplace
 
-Indian students → Cooker, Kettle, Cookware Set
+GET /api/marketplace/recommendations
 
-Foreign students → Study Desk, Electronics Kit, Starter Bundle
+GET /api/marketplace/:id
 
-📈 Future Improvements
+Cart
+
+GET /api/carts
+
+POST /api/carts
+
+DELETE /api/carts/:id
+
+AI
+
+POST /api/Ai
+
+📊 Architecture Overview
+React (Vercel)
+        ↓
+Express API (Render)
+        ↓
+MongoDB Atlas
+
+Feedback → Firebase Realtime Database
+🧠 Key Concepts Implemented
+
+RESTful API Design
+
+JWT Authentication
+
+Protected Routes
+
+Hybrid Database Architecture
+
+CORS Handling
+
+Environment-based Configuration
+
+Production Deployment Workflow
+
+Case-sensitive build fixes (Linux vs Windows)
+
+🎯 Future Improvements
 
 Payment Gateway Integration
 
-Wishlist Feature
-
 Admin Dashboard
 
-Real-time Chat
+Order Management
 
-Advanced AI Product Recommendation Engine
+Image Upload with Cloud Storage
 
-Order History Tracking
+Advanced AI recommendation engine
 
-👨‍💻 Author
+Role-based access control
+
+👩‍💻 Author
 
 Sakshi Madne
-Full Stack Developer (MERN)
 
-📜 License
-
-This project is for educational and demonstration purposes.
-
-If you want, I can also:
-
-Create a professional GitHub description
-
-Create a LinkedIn project description
-
-Generate a project architecture diagram
-
-Create a resume-ready project summary (ATS optimized)
+Full Stack Developer
+MERN Stack | React | Node | MongoDB

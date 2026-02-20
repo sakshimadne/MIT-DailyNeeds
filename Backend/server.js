@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();
 const chatbot = require('./routes/chatRoutes')
-
+const feedbackRoutes = require("./routes/feedbackRoutes");
 const app = express();
 
 // Connect to MongoDB
@@ -35,7 +35,7 @@ const SECRET = "your_jwt_secret";
 // Routes
 app.use('/api/marketplace', marketplaceRoutes);
 // app.use('/', chatbot);
-
+app.use("/api", feedbackRoutes);
 
 // Register Route
 app.post('/api/register', async (req, res) => {
