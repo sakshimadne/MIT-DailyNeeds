@@ -1,4 +1,4 @@
-import React from 'react'
+
 import './Footer.css'
 import Chatbot from '../components/chatbot'
 const Footer = () => {

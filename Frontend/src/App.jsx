@@ -13,7 +13,7 @@ import Dashboard from './pages/Dashboard'
 import Feedback from './pages/Feedback'
 import BundleOffers from './pages/bundleOffer'
 import StudentDiscount from './pages/StudentDiscount'
-import Footer from './pages/footer'
+import Footer from './pages/Footer'
 import Bundles from './pages/Category/Category'
 // import Home from './pages/Home';
 // import ProductDetail from './pages/ProductDetail';
