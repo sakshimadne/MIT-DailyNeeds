@@ -1,6 +1,6 @@
 
 import './Footer.css'
-import Chatbot from '../components/chatbot'
+import Chatbot from '../components/Chatbot'
 const Footer = () => {
   return (
     <div>
