@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 // import axios from 'axios'
+import api from "../../../utils/api";
 import CategoryCard from '../components/CategoryCard'
 
 const BundlesPage = () => {
@@ -16,12 +17,8 @@ const BundlesPage = () => {
     const fetchCategories = async () => {
       try {
         const queryParams = new URLSearchParams(filters).toString()
-        const response = await fetch(
-          `http://localhost:5000/api/marketplace?${queryParams}`
-        )
-        const data = await response.json()
-        console.log('Categories Data:', data)
-        setCategories(data.data)
+      const response = await api.get(`/api/marketplace?${queryParams}`)
+setCategories(response.data.data)
       } catch (error) {
         console.error('Error fetching categories:', error)
       }
@@ -37,11 +34,8 @@ const BundlesPage = () => {
           preferences: 'budget-friendly',
           ...filters,
         }).toString()
-        const response = await fetch(
-          `http://localhost:5000/api/marketplace/recommendations?${queryParams}`
-        )
-        const data = await response.json()
-        setRecommendations(data.data)
+        const response = await api.get(`/api/marketplace/recommendations?${queryParams}`)
+setRecommendations(response.data.data)
       } catch (error) {
         console.error('Error fetching recommendations:', error)
       }

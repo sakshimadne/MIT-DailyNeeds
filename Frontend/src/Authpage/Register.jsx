@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+import api from "../utils/api"
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -13,7 +14,7 @@ const Register = () => {
     e.preventDefault();
     try {
       // Send name, email, and password to the server for registration
-      const res = await axios.post('http://localhost:5000/api/register', { name, email, password });
+      const res = await api.post('/api/register', { name, email, password });
       alert(res.data.message);
       navigate('/login');  // Redirect to login page after successful registration
     } catch (err) {

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import  { useState, useEffect } from 'react';
+
 import './Adddata.css'
+import api from "../utils/api";
 
 const AddCart = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +11,7 @@ const AddCart = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/products');
+        const response = await api.get("/api/marketplace");
         setProducts(response.data);
         console.log('my console.', response)
       } catch (error) {
@@ -30,13 +31,13 @@ const AddCart = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:8001/carts', {
+        const response = await api.get("/api/carts", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
        
-        setCart(response.data);
+        setCart(response.data.data);
         // console.log(response.data)
       } catch (error) {
         console.error('Error fetching cart:', error.response?.data || error.message);
@@ -57,9 +58,8 @@ const AddCart = () => {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:8001/carts',
-        { productId: product.id },
+      const response = await api.post("/carts",
+        { productId: product._id },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -81,13 +81,16 @@ const AddCart = () => {
     }
   
     try {
-      const response = await axios.delete(`http://localhost:8001/carts/${productId}`, {
+      const response = await api.delete(`/api/carts/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       alert('Item removed from cart successfully!');
-      setCart((prevCart) => prevCart.filter((item) => item.product.id !== productId));
+      // setCart((prevCart) => prevCart.filter((item) => item.product.id !== productId));
+      setCart((prevCart) =>
+  prevCart.filter((item) => item.product._id !== productId)
+);
     } catch (error) {
       console.error('Error removing from cart:', error.response?.data || error.message);
       alert('Failed to remove item from cart.');

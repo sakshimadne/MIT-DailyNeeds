@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from "../utils/api"
 import './Login.css'
 import { Link } from 'react-router-dom'
 
@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:5000/api/login', {
+      const res = await api.post('/api/login', {
         email,
         password,
       })
@@ -44,12 +44,12 @@ const Login = () => {
           />
           <button type='submit'>Login</button>
         </form>
-        <p style={{ fontSize: 20 }}>
-          Don't have an account?{' '}
-          <Link to='/register' id='links'>
-            Sign up
-          </Link>
-        </p>
+      <p style={{ fontSize: 20 }}>
+  Don't have an account?{" "}
+  <Link to="/register" id="links">
+    Sign up
+  </Link>
+</p>
       </div>
     </>
   )

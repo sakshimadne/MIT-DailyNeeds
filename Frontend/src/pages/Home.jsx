@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
+import api from "../utils/api"
 import CategoryCard from '../components/CategoryCard'
 
 const Home = () => {
@@ -16,11 +16,8 @@ const Home = () => {
     const fetchCategories = async () => {
       try {
         const queryParams = new URLSearchParams(filters).toString()
-        const response = await fetch(
-          `http://localhost:5000/api/marketplace?${queryParams}`
-        )
-        const data = await response.json()
-        setCategories(data.data)
+      const response = await api.get(`/api/marketplace/recommendations?${queryParams}`)
+setRecommendations(response.data.data)
       } catch (error) {
         console.error('Error fetching categories:', error)
       }

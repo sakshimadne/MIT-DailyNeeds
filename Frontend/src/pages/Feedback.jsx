@@ -1,13 +1,13 @@
-import React, { useState ,useEffect} from 'react'
-import axios  from 'axios'
+import { useState ,useEffect} from 'react'
+// import axios  from 'axios'
+import axios from "axios";
 import './Feedback.css'
 import { Link } from 'react-scroll';
 
 
 const Feedback = () => {
   // feedback url 
-  const Apiurl = ''
-
+ 
 
   const [feedbackData, setFeedbackData] = useState({
     name: "",
@@ -27,34 +27,67 @@ const handleRating = (rating) => {
 };
 
 // post data in feedback url
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//       await axios.post("https://mitmart-4276b-default-rtdb.firebaseio.com/feedback.json", feedbackData);
+//       setFeedbackData({ name: "", rating: 0, comments: "" });
+//       fetchFeedback(); 
+  
+//   } catch (error) {
+//       console.log("error", error);
+//   }
+// };
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-      await axios.post("https://mitmart-4276b-default-rtdb.firebaseio.com/feedback.json", feedbackData);
-      setFeedbackData({ name: "", rating: 0, comments: "" });
-      fetchFeedback(); 
-  
+    await axios.post(
+      "https://mitmart-4276b-default-rtdb.firebaseio.com/feedback.json",
+      feedbackData
+    );
+
+    setFeedbackData({ name: "", rating: 0, comments: "" });
+    fetchFeedback();
+
   } catch (error) {
-      console.log("error", error);
+    console.log("Error submitting feedback:", error);
   }
 };
-
 // show on ui
+// const fetchFeedback = async () => {
+//   try {
+//       const response = await axios.get("https://mitmart-4276b-default-rtdb.firebaseio.com/feedback.json");
+//       if (response.data) {
+//           const formattedData = Object.entries(response.data).map(([id, data]) => ({
+//               id,
+//               ...data,
+//           }));
+//           setAllFeedback(formattedData);
+//       }
+//   } catch (error) {
+//       console.log("Error fetching feedback:", error);
+//   }
+// };
 const fetchFeedback = async () => {
   try {
-      const response = await axios.get("https://mitmart-4276b-default-rtdb.firebaseio.com/feedback.json");
-      if (response.data) {
-          const formattedData = Object.entries(response.data).map(([id, data]) => ({
-              id,
-              ...data,
-          }));
-          setAllFeedback(formattedData);
-      }
+    const response = await axios.get(
+      "https://mitmart-4276b-default-rtdb.firebaseio.com/feedback.json"
+    );
+
+    if (response.data) {
+      const formattedData = Object.entries(response.data).map(
+        ([id, data]) => ({
+          id,
+          ...data,
+        })
+      );
+
+      setAllFeedback(formattedData);
+    }
   } catch (error) {
-      console.log("Error fetching feedback:", error);
+    console.log("Error fetching feedback:", error);
   }
 };
-
 useEffect(() => {
   fetchFeedback();
 }, []);
